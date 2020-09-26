@@ -7,14 +7,12 @@
     android:id="@+id/relativeLayout" >
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/cameraButton"
         android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/cameraImageView"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="146dp"
-        android:layout_marginBottom="46dp"
+        android:layout_marginBottom="60dp"
         android:text="Button" />
 
     <ImageView
