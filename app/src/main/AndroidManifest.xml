@@ -34,14 +34,17 @@
             android:label="@string/title_activity_maps">
         </activity>
         <activity
-            android:name=".openpage"
-            android:label="Welcome Page">
+            android:name=".MainActivity"
+            android:label="Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-    </activity>
+        </activity>
+        <activity
+            android:name=".WelcomeActivity"
+            android:label="Welcome">
+        </activity>
     </application>
 
 </manifest>
