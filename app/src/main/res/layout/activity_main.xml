@@ -1,34 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/relativeLayout" >
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="241dp"
+        android:layout_marginLeft="241dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginRight="31dp"
+        android:layout_marginBottom="38dp"
+        android:layout_weight="1"
+        android:text="Next" />
 
     <Button
         android:id="@+id/cameraButton"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="60dp"
-        android:text="Button" />
+        android:layout_centerVertical="true"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginEnd="241dp"
+        android:layout_marginRight="241dp"
+        android:layout_marginBottom="40dp"
+        android:layout_weight="1"
+        android:text="Camera" />
 
-    <ImageView
-        android:id="@+id/cameraImageView"
-        android:layout_width="388dp"
-        android:layout_height="400dp"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="89dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginRight="9dp"
-        app:srcCompat="@android:color/darker_gray" />
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="30dp"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:text="Welcome to CarDabra! Please allow both camera functionality and location detection below for full compatibility." />
+
+    <ImageView
+        android:id="@+id/cameraImageView"
+        android:layout_width="345dp"
+        android:layout_height="431dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="153dp"
+        app:srcCompat="@android:color/transparent" />
+
 </RelativeLayout>
+
