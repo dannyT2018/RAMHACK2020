@@ -34,10 +34,10 @@
 <img src="Documentation/Camera_Screen.jpg" width="300">
 On the main screen, the user can instantly take a picture of a vehicle and press confirm.
 
-<img src="Documentation/ConfirmationScreen.jpg" width="300">
+<img src="Documentation/ConfirmationScreen.png" width="300">
 Once an image is submitted from the camera screen, CarDabra will display that car at the cheapest price given transfer fees
 
-<img src="Documentation/SearchScreen.jpg" width="300">
+<img src="Documentation/SearchScreen.png" width="300">
 The user can submit confirm the result, and will receive a confirmation. 
 
 
