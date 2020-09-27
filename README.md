@@ -1,4 +1,4 @@
-# RamHACKS2020
+# CarDabra
 
 ## Inspiration
 <p>Imagine driving through downtown on a Friday night and suddenly a beautiful car rolls past you. Despite being awed by the vehicle, you are unable to identify it. To solve this problem, we decided to create CarDabra, a mobile application that helps identify cars on the road.</p>
