@@ -1,7 +1,5 @@
-<img src="Documentation/CarDabraLogo.png" width="300">
-
 # CarDabra
-
+Created by Danny Tran, Hamza Chippa, and Dylan Reynolds
 ## Inspiration
 <p>Imagine driving through downtown on a Friday night and suddenly a beautiful car rolls past you. Despite being awed by the vehicle, you are unable to identify it. To solve this problem, we decided to create CarDabra, a mobile application that helps identify cars on the road.</p>
 
@@ -33,6 +31,8 @@
 * Create additional widgets to provide a better user experience
 
 ## Screenshots
+<img src="Documentation/CarDabraLogo.png" width="300">
+
 <img src="Documentation/Camera_Screen.jpg" width="300">
 
 On the main screen, the user can instantly take a picture of a vehicle and press confirm.
