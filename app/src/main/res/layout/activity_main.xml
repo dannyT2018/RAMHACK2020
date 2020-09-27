@@ -35,8 +35,18 @@
             android:textColor="@android:color/white"
             android:textSize="26sp" />
 
+        <Button
+            android:id="@+id/mainTransition"
+            android:layout_width="108dp"
+            android:layout_height="76dp"
+            android:text="Confirm"
+            tools:layout_editor_absoluteX="151dp"
+            tools:layout_editor_absoluteY="639dp"
+            android:onClick="openMap"/>
 
     </RelativeLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

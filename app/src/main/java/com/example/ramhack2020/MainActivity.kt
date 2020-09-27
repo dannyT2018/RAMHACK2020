@@ -1,6 +1,7 @@
 package com.example.ramhack2020
 
 import android.app.Dialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -13,6 +14,7 @@ import android.graphics.*
 import android.os.Handler
 import android.os.HandlerThread
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import android.widget.Toast
@@ -102,6 +104,12 @@ class MainActivity : AppCompatActivity(), LifecycleOwner {
 
             }
         CameraX.bindToLifecycle(this, preview, analyzerUseCase)
+    }
+    fun openMap(view: View) {
+        // Open the map.
+        val intent = Intent(this, MapsActivity::class.java)
+        // Start your next activity
+        startActivity(intent)
     }
     private fun checkResult(resultText: String) {
         // Check to see if the object captured by the camera is recyclable.
