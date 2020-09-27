@@ -1,5 +1,6 @@
 package com.example.ramhack2020
 
+import android.content.Context
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Address
@@ -17,7 +18,10 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.io.IOException
+import java.io.InputStream
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -34,6 +38,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        testing()
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -88,13 +93,60 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         Log.v("MapsActivity", getZipCode(location))
         mMap.addMarker(markerOptions)
     }
+    data class Person(val name: String, val age: Int, val messages: List<String>) {
+    }
+
+    private fun testing() {
+        val jsonFileString = getJsonDataFromAsset(applicationContext, "bezkoder.json")
+        Log.i("data", jsonFileString)
+
+        val gson = Gson()
+        val listPersonType = object : TypeToken<List<Person>>() {}.type
+
+        var persons: List<Person> = gson.fromJson(jsonFileString, listPersonType)
+        persons.forEachIndexed { idx, person ->
+            Log.i("data", "> Item $idx:\n$person")
+        }
+    }
+
+    private fun getJsonDataFromAsset(context: Context, fileName: String): String? {
+        val jsonString: String
+        try {
+            jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+            return null
+        }
+        return jsonString
+    }
 
     private fun findClosestStore(currentLatLng: LatLng, destinationLatLng: List<LatLng>, data: LatLng?){
         val geocode = Geocoder(this)
         val closestDistance: Int
-        val cloestLat: LatLng
+        val closestLat: LatLng
         var closestLon: LatLng
-
+        var pricing = 0
+        var transferFee = 0
+        // Read in JSON
+        //For each address compare points and set the cloest lon/lat
+        // Determine the distance and have an if
+        closestDistance = 0
+        if (closestDistance > 1500) {
+            transferFee = 999
+        } else if (closestDistance > 1000) {
+            transferFee = 800
+        } else if (closestDistance > 800) {
+            transferFee = 600
+        } else if (closestDistance > 400) {
+            transferFee = 400
+        } else if (closestDistance > 200) {
+            transferFee = 200
+        } else if (closestDistance > 100) {
+            transferFee = 100
+        } else {
+            transferFee = 0
+        }
+        return
     }
 
     private fun getAddress(latLng: LatLng): String {
