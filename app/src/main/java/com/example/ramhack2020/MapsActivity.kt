@@ -19,9 +19,11 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import java.io.IOException
 import java.io.InputStream
+import java.util.*
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -38,7 +40,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        testing()
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -50,6 +51,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 placeMarkerOnMap(LatLng(lastLocation.latitude, lastLocation.longitude))
             }
         }
+        testing()
     }
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -90,10 +92,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val titleStr = getAddress(location)
         markerOptions.title(titleStr)
-        Log.v("MapsActivity", getZipCode(location))
         mMap.addMarker(markerOptions)
     }
-    data class Person(val name: String, val age: Int, val messages: List<String>) {
+
+    data class Distributor(val make: String, val model: String, val lat: Int, val lon: Int, val location: String, val color: String, val year: Int, val price: Int) {
     }
 
     private fun testing() {
@@ -101,12 +103,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         Log.i("data", jsonFileString)
 
         val gson = Gson()
-        val listPersonType = object : TypeToken<List<Person>>() {}.type
+        val listPersonType = object : TypeToken<List<Distributor>>() {}.type
 
-        var persons: List<Person> = gson.fromJson(jsonFileString, listPersonType)
-        persons.forEachIndexed { idx, person ->
-            Log.i("data", "> Item $idx:\n$person")
-        }
+        var distributors: List<Distributor> = gson.fromJson(jsonFileString, listPersonType)
+        distributors.forEachIndexed { idx, distributor -> Log.i("data", "> Item $idx:\n$distributor") }
     }
 
     private fun getJsonDataFromAsset(context: Context, fileName: String): String? {
@@ -168,41 +168,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         } catch (e: IOException) {
             Log.e("MapActivity", e.localizedMessage)
         }
-
-
         return addressText
-    }
-
-    private fun getZipCode(latLng: LatLng): String? {
-        val geocode = Geocoder(this)
-        val addresses: List<Address>?
-        var address: Address?
-        var addressText = ""
-        var addr = ""
-        var zipcode: String? = ""
-        var city: String? = ""
-        var state: String? = ""
-
-        try {
-            addresses = geocode.getFromLocation(latLng.latitude, latLng.longitude, 1)
-            if (null != addresses && addresses.isNotEmpty()) {
-                address = addresses[0]
-                addr = addresses[0].getAddressLine(0) + "," + addresses[0].subAdminArea
-                city = addresses[0].locality
-                state = addresses[0].adminArea
-
-                for (i in addresses.indices) {
-                    address = addresses[i]
-                    if (address.postalCode != null) {
-                        zipcode = address.postalCode
-                        break
-                    }
-                }
-            }
-        } catch (e: IOException) {
-            Log.e("MapActivity", e.localizedMessage)
-        }
-        return zipcode
     }
 
 

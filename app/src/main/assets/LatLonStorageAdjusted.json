@@ -1,0 +1,52 @@
+[
+  {
+    "make": "Honda",
+    "model": "Odyssey EX",
+    "lat": 37.650904,
+    "lon": -77.591291,
+    "location": "Richmond, VA",
+    "color": "White",
+    "year": 2014,
+    "price": 12599,
+  },
+  {
+    "make": "Toyota",
+    "model": "Camry XLE",
+    "lat": 36.695474,
+    "lon": -76.867663,
+    "location": "Brandywine, Maryland",
+    "color": "Black",
+    "year": 2011,
+    "price": 10899
+  },
+  {
+    "make": "Chevrolet",
+    "model": "Tahoe LT",
+    "lat": 39.032302,
+    "lon": -77.433458,
+    "location": "Ashburn, Virginia",
+    "color": "Black",
+    "Year": 2020,
+    "price": 46998
+  },
+  {
+    "make": "Jeep",
+    "model": "Cherokee",
+    "lat": 39.208137,
+    "lon": -84.391414,
+    "location": "Deer Park, Ohio",
+    "color": "Black",
+    "Year": 2017,
+    "price": 26998
+  },
+  {
+    "make": "Ford",
+    "model": "Mustang",
+    "lat": 40.814054,
+    "lon": -96.685911,
+    "location": "Lincoln, Nebraska",
+    "color": "Grey",
+    "Year": 2010,
+    "price": 20999
+  }
+]
