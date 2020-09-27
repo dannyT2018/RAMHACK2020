@@ -93,8 +93,8 @@ class MainActivity : AppCompatActivity(), LifecycleOwner {
 
                 tfLiteClassifier
                     .classifyAsync(bitmap)
-                    .addOnSuccessListener { resultText -> checkResult(resultText.toString()}
-                    .addOnFailureListener { error ->  }
+                    .addOnSuccessListener { resultText -> checkResult(resultText.toString())}
+                    .addOnFailureListener { error ->  Log.e("IMAGE ERROR", error.toString())}
 
             }
         CameraX.bindToLifecycle(this, preview, analyzerUseCase)
@@ -113,8 +113,8 @@ class MainActivity : AppCompatActivity(), LifecycleOwner {
             if (carsTerms.contains(remainder)) {
                 // Pause camera and create builder dialog.
                 CameraX.unbindAll()
-                val builder = AlertDialog.Builder(this, R.style.AlertDialogCustom)
-                builder.setTitle("Recycle?")
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Vehicle Found")
                 builder.setMessage("Would you like to recycle the $remainder for one point?")
                 // Show the popup because we are 80% certain the item is recyclable
                 builder.show()
