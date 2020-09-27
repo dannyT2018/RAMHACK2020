@@ -29,3 +29,15 @@
 * Further improve our data modeling by incorporating more images.
 * Implement a more advance search that utilizes information aside from transfer fees
 * Create additional widgets to provide a better user experience
+
+## Screenshots
+<img src="Documentation/Camera_Screen.jpg" width="300">
+On the main screen, the user can instantly take a picture of a vehicle and press confirm.
+
+<img src="Documentation/ConfirmationScreen.jpg" width="300">
+Once an image is submitted from the camera screen, CarDabra will display that car at the cheapest price given transfer fees
+
+<img src="Documentation/SearchScreen.jpg" width="300">
+The user can submit confirm the result, and will receive a confirmation. 
+
+
