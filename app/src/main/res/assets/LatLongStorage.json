@@ -1,0 +1,169 @@
+{
+  "carmax1": {
+    "Latitude": "37.650904",
+    "Longitude": "-77.591291",
+    "Location Name": "Richmond VA",
+    "cars": {
+      "Ford" : {
+        "Model": "Edge",
+        "Year" : "2010",
+        "Color" : "Red",
+        "Price" : "10,998"
+      },
+      "Toyota" : {
+        "Model": "Avalon",
+        "Year" : "2012",
+        "Color" : "Cream",
+        "Price" : "13,599"
+      },
+      "Lincoln" : {
+        "Model": "Town Car Signature",
+        "Year" : "2011",
+        "Color" : "White",
+        "Price" : "12,599"
+      },
+      "Honda" : {
+        "Model": "Odyssey EX",
+        "Year" : "2014",
+        "Color" : "White",
+        "Price" : "15,998"
+      },
+      "Chevrolet" : {
+        "Model": "Traverse LT",
+        "Year" : "2020",
+        "Color" : "Grey",
+        "Price" : "33,998"
+      },
+      "Nissan" : {
+        "Model": "Altima S",
+        "Year" : "2011",
+        "Color" : "White",
+        "Price" : "11,599"
+      }
+    }
+  },
+  "carmax2": {
+    "Latitude": "36.695474",
+    "Longitude": "-76.867663",
+    "Location Name": "Brandywine, Maryland",
+    "cars": {
+      "Toyota" : {
+        "Model": "Camry XLE",
+        "Year" : "2011",
+        "Color" : "Black",
+        "Price" : "10,899"
+      },
+      "Honda" : {
+        "Model": "Accord LX",
+        "Year" : "2013",
+        "Color" : "Gold",
+        "Price" : "14,899"
+      },
+      "Chevrolet" : {
+        "Model": "Malibu LT",
+        "Year" : "2020",
+        "Color" : "Pearl",
+        "Price" : "18,899"
+      },
+      "Kia" : {
+        "Model": "Sorento LX",
+        "Year" : "2011",
+        "Color" : "White",
+        "Price" : "11,899"
+      }
+    }
+  },
+  "carmax3": {
+    "Latitude": "39.032302",
+    "Longitude": "-77.433458",
+    "Location Name": "Ashburn, Virginia",
+    "cars": {
+      "Toyota" : {
+        "Model": "Camry",
+        "Year" : "2009",
+        "Color" : "Green",
+        "Price" : "10,599"
+      },
+      "Honda" : {
+        "Model": "Accord EX-L",
+        "Year" : "2012",
+        "Color" : "Black",
+        "Price" : "13,998"
+      },
+      "Chevrolet" : {
+        "Model": "Tahoe LT",
+        "Year" : "2020",
+        "Color" : "Black",
+        "Price" : "46,998"
+      },
+      "Jeep" : {
+        "Model": "Compass Trailhawk",
+        "Year" : "2019",
+        "Color" : "Black",
+        "Price" : "22,998"
+      }
+    }
+  },
+  "carmax4": {
+    "Latitude": "39.208137",
+    "Longitude": "-84.391414",
+    "Location Name": "Deer Park, Ohio",
+    "cars": {
+      "Toyota" : {
+        "Model": "Camry",
+        "Year" : "2009",
+        "Color" : "Green",
+        "Price" : "10,599"
+      },
+      "Honda" : {
+        "Model": "Accord",
+        "Year" : "2010",
+        "Color" : "Red",
+        "Price" : "15,998"
+      },
+      "Jeep" : {
+        "Model": "Cherokee",
+        "Year" : "2017",
+        "Color" : "Black",
+        "Price" : "26,998"
+      },
+      "Subaru" : {
+        "Model": "Crosstrek",
+        "Year" : "2021",
+        "Color" : "Cool Khaki Grey",
+        "Price" : "23,998"
+      }
+    }
+  },
+  "carmax5": {
+    "Latitude": "40.814054",
+    "Longitude": "-96.685911",
+    "Location Name": "Lincoln, Nebraska",
+    "cars": {
+      "Ford" : {
+        "Model": "Mustang",
+        "Year" : "2010",
+        "Color" : "Grey",
+        "Price" : "20,999"
+      },
+      "Chevrolet" : {
+        "Model": "Traverse",
+        "Year" : "2018",
+        "Color" : "Black",
+        "Price" : "26,998"
+      },
+      "Jeep" : {
+        "Model": "Wrangler",
+        "Year" : "2020",
+        "Color" : "Blue",
+        "Price" : "28,295"
+      },
+      "Kia" : {
+        "Model": "Sorento",
+        "Year" : "2020",
+        "Color" : "Black",
+        "Price" : "26,990"
+      }
+    }
+  }
+}
