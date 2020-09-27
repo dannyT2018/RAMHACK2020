@@ -1,5 +1,6 @@
 package com.example.ramhack2020
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -16,10 +17,11 @@ import androidx.core.content.ContextCompat
 import android.widget.Toast
 import androidx.camera.core.*
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.LifecycleOwner
 import java.io.ByteArrayOutputStream
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), LifecycleOwner {
 
     private var lensFacing = CameraX.LensFacing.BACK
     private val TAG = "MainActivity"
@@ -46,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             .initialize()
             .addOnSuccessListener { }
             .addOnFailureListener { e -> Log.e(TAG, "Error in setting up the classifier.", e) }
-
+        
     }
 
     private fun startCamera() {
@@ -115,6 +117,7 @@ class MainActivity : AppCompatActivity() {
         val imageBytes = out.toByteArray()
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
     }
+
 
     private fun updateTransform() {
         val matrix = Matrix()

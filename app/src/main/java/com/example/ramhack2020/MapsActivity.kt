@@ -1,6 +1,8 @@
 package com.example.ramhack2020
 
+import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Address
@@ -9,6 +11,9 @@ import android.location.Location
 import android.location.Location.distanceBetween
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.common.api.ResolvableApiException
@@ -31,6 +36,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var testLocation: LatLng
     private lateinit var closestCarMax: LatLng
     private var closestCarMaxDistance =  9999999.99999
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -297,5 +303,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.uiSettings.isZoomControlsEnabled = true
 
         setUpMap()
+    }
+
+    fun ShowDialog(view: View) {
+
+        val builder:AlertDialog.Builder=AlertDialog.Builder(this)
+        builder.setTitle("Search")
+        builder.setMessage("testing")
+        builder.setIcon(R.drawable.ic_launcher_background)
+
+        builder.setPositiveButton("Ok", DialogInterface.OnClickListener{dialog, which-> dialog.dismiss()})
+
+        val alertDialog:AlertDialog = builder.create()
+        alertDialog.show()
     }
 }
