@@ -1,9 +1,12 @@
 {
-  "Latitude":"1",
-  "Longitude":"1",
-  "Location Name":"Random Made Up Carmax",
-
-  "Latitude":"2",
-  "Longitude":"2",
-  "Location Name":"New Random Made Up Carmax"
+  "carmax1": {
+    "Latitude": "1",
+    "Longitude": "1",
+    "Location Name": "Random Made Up Carmax"
+  },
+  "carmax2": {
+    "Latitude": "2",
+    "Longitude": "2",
+    "Location Name": "New Random Made Up Carmax"
+  }
 }
