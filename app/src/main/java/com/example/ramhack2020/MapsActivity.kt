@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
+import android.location.Location.distanceBetween
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -21,14 +22,15 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.IOException
-import java.io.InputStream
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
-
+    private lateinit var testLocation: LatLng
+    private lateinit var closestCarMax: LatLng
+    private var closestCarMaxDistance =  9999999.99999
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,18 +40,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        testing()
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(p0: LocationResult) {
                 super.onLocationResult(p0)
-
                 lastLocation = p0.lastLocation
                 placeMarkerOnMap(LatLng(lastLocation.latitude, lastLocation.longitude))
+                testLocation = LatLng(lastLocation.latitude, lastLocation.longitude)
+                findClosestCarMaxToMe(testLocation)
             }
         }
+        createLocationRequest()
     }
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -78,8 +81,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             if (location != null) {
                 lastLocation = location
                 val currentLatLng = LatLng(location.latitude, location.longitude)
+                testLocation = currentLatLng
                 placeMarkerOnMap(currentLatLng)
-
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
             }
         }
@@ -90,47 +93,85 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val titleStr = getAddress(location)
         markerOptions.title(titleStr)
-        Log.v("MapsActivity", getZipCode(location))
         mMap.addMarker(markerOptions)
     }
-    data class Person(val name: String, val age: Int, val messages: List<String>) {
+
+    data class Distributor(val make: String, val model: String, val lat: Double, val lon: Double, val location: String, val color: String, val year: Int, val price: Int) {
     }
 
-    private fun testing() {
-        val jsonFileString = getJsonDataFromAsset(applicationContext, "bezkoder.json")
+    private  fun findClosestCarMaxToMe(currentLatLng: LatLng) {
+        try{
+            Log.i("CurrentTestLocation", "${testLocation}")
+        } catch (e: Exception) {
+            Log.i("YEEEEEEEEEEEEEEEP", "FAILLLLLLLLLLLLLLLLLED")
+        }
+
+        var closestDistance = 99999.999
+        var closestYear: Int
+        var closestColor: String
+        var pricing = 0
+        var transferFee = 0
+        val jsonFileString = getJsonDataFromAsset(applicationContext, "LatLonStorageAdjusted.json")
         Log.i("data", jsonFileString)
 
         val gson = Gson()
-        val listPersonType = object : TypeToken<List<Person>>() {}.type
+        val listPersonType = object : TypeToken<List<Distributor>>() {}.type
 
-        var persons: List<Person> = gson.fromJson(jsonFileString, listPersonType)
-        persons.forEachIndexed { idx, person ->
-            Log.i("data", "> Item $idx:\n$person")
+        var distributors: List<Distributor> = gson.fromJson(jsonFileString, listPersonType)
+        distributors.forEachIndexed {
+            // Loops to through each data point to compare the data with current location
+                idx, distributor ->
+            val locationA = Location("point A")
+            locationA.latitude = currentLatLng.latitude
+            locationA.longitude = currentLatLng.longitude
+            val locationB = Location("point B")
+            locationB.latitude = distributor.lat
+            locationB.longitude = distributor.lon
+            val distance = locationA.distanceTo(locationB).toDouble()
+            if (distance < closestDistance) {
+                closestCarMaxDistance = distance
+                closestCarMax = currentLatLng
+            }
         }
     }
-
-    private fun getJsonDataFromAsset(context: Context, fileName: String): String? {
-        val jsonString: String
-        try {
-            jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
-        } catch (ioException: IOException) {
-            ioException.printStackTrace()
-            return null
+    private fun findCarMaxToCarMax(closestCarMax: LatLng) {
+        try{
+            Log.i("CurrentTestLocation", "${testLocation}")
+        } catch (e: Exception) {
+            Log.i("YEEEEEEEEEEEEEEEP", "FAILLLLLLLLLLLLLLLLLED")
         }
-        return jsonString
-    }
 
-    private fun findClosestStore(currentLatLng: LatLng, destinationLatLng: List<LatLng>, data: LatLng?){
-        val geocode = Geocoder(this)
-        val closestDistance: Int
-        val closestLat: LatLng
-        var closestLon: LatLng
+        var closestDistance = 99999.999
+        var closestYear: Int
+        var closestColor: String
         var pricing = 0
         var transferFee = 0
-        // Read in JSON
-        //For each address compare points and set the cloest lon/lat
-        // Determine the distance and have an if
-        closestDistance = 0
+        val jsonFileString = getJsonDataFromAsset(applicationContext, "LatLonStorageAdjusted.json")
+        Log.i("data", jsonFileString)
+
+        val gson = Gson()
+        val listPersonType = object : TypeToken<List<Distributor>>() {}.type
+
+        var distributors: List<Distributor> = gson.fromJson(jsonFileString, listPersonType)
+        distributors.forEachIndexed {
+            // Loops to through each data point to compare the data with current location
+                idx, distributor ->
+            val locationA = Location("point A")
+            locationA.latitude = closestCarMax.latitude
+            locationA.longitude = closestCarMax.longitude
+            val locationB = Location("point B")
+            locationB.latitude = distributor.lat
+            locationB.longitude = distributor.lon
+            val distance = locationA.distanceTo(locationB).toDouble()
+            // Filter by car is needed HERE
+            if (distance < closestDistance) {
+                closestDistance = distance
+                closestYear = distributor.year
+                closestColor = distributor.color
+                pricing = distributor.price
+            }
+        }
+
         if (closestDistance > 1500) {
             transferFee = 999
         } else if (closestDistance > 1000) {
@@ -146,7 +187,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         } else {
             transferFee = 0
         }
-        return
+    }
+
+    private fun getJsonDataFromAsset(context: Context, fileName: String): String? {
+        val jsonString: String
+
+        try {
+            jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+            return null
+        }
+        return jsonString
     }
 
     private fun getAddress(latLng: LatLng): String {
@@ -168,41 +220,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         } catch (e: IOException) {
             Log.e("MapActivity", e.localizedMessage)
         }
-
-
         return addressText
-    }
-
-    private fun getZipCode(latLng: LatLng): String? {
-        val geocode = Geocoder(this)
-        val addresses: List<Address>?
-        var address: Address?
-        var addressText = ""
-        var addr = ""
-        var zipcode: String? = ""
-        var city: String? = ""
-        var state: String? = ""
-
-        try {
-            addresses = geocode.getFromLocation(latLng.latitude, latLng.longitude, 1)
-            if (null != addresses && addresses.isNotEmpty()) {
-                address = addresses[0]
-                addr = addresses[0].getAddressLine(0) + "," + addresses[0].subAdminArea
-                city = addresses[0].locality
-                state = addresses[0].adminArea
-
-                for (i in addresses.indices) {
-                    address = addresses[i]
-                    if (address.postalCode != null) {
-                        zipcode = address.postalCode
-                        break
-                    }
-                }
-            }
-        } catch (e: IOException) {
-            Log.e("MapActivity", e.localizedMessage)
-        }
-        return zipcode
     }
 
 
