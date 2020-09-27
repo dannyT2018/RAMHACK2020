@@ -1,3 +1,5 @@
+<img src="Documentation/CarDabraLogo.png" width="300">
+
 # CarDabra
 
 ## Inspiration
