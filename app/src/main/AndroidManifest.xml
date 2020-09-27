@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -44,13 +46,12 @@
         <activity
             android:name=".MapsActivity"
             android:label="Maps">
-        </activity>
-        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
+        </activity>
+        <activity android:name=".MainActivity">
         </activity>
     </application>
 

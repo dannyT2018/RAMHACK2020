@@ -1,84 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/nextButton"
+    <TextureView
+        android:id="@+id/textureView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/rlBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <RelativeLayout
+        android:id="@+id/rlBottom"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="241dp"
-        android:layout_marginLeft="241dp"
-        android:layout_marginEnd="31dp"
-        android:layout_marginRight="31dp"
-        android:layout_marginBottom="38dp"
-        android:layout_weight="1"
-        android:text="Next" />
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textureView">
 
-    <Button
-        android:id="@+id/cameraButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="31dp"
-        android:layout_marginLeft="31dp"
-        android:layout_marginEnd="241dp"
-        android:layout_marginRight="241dp"
-        android:layout_marginBottom="40dp"
-        android:layout_weight="1"
-        android:text="Camera" />
+        <TextView
+            android:id="@+id/predictedTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text=""
+            android:textColor="@android:color/white"
+            android:textSize="26sp" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:text="Welcome to CarDabra! Please allow both camera functionality and location detection below for full compatibility."
-        android:textAlignment="center"
-        android:textSize="20dp" />
 
-    <ImageView
-        android:id="@+id/cameraImageView"
-        android:layout_width="396dp"
-        android:layout_height="387dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="6dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginTop="136dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:src="@mipmap/ic_launcher"
-        app:srcCompat="@android:color/transparent" />
+    </RelativeLayout>
 
-</RelativeLayout>
 
+</androidx.constraintlayout.widget.ConstraintLayout>
