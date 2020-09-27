@@ -1,1 +1,31 @@
-# RAMHACK2020
+# RamHACKS2020
+
+## Inspiration
+<p>Imagine driving through downtown on a Friday night and suddenly a beautiful car rolls past you. Despite being awed by the vehicle, you are unable to identify it. To solve this problem, we decided to create CarDabra, a mobile application that helps identify cars on the road.</p>
+
+## What it does
+<p>Similar to Snapchat's Shazam, we decided to move the focus from music to cars. Using a mobile device, you are able to aim your camera at an unknown vehicle and get back the model and make of that car. Not only that, but CarDabra will help you find that car at the cheapest price given tranfer fees between one point to another. All of this is done at the palm of your hands.</p>
+
+## How we built it
+<p>We used Kotlin, XML, Google Maps API, TensorFlowLite API, and Android Studio to develop the app.</p>
+
+## Challenges we ran into
+* A challenge that we had faced was working with git. Some of us had never used git before, so we spent time learning about git commands, branch, and overall version control concepts.
+* None of us had everr worked with data modeling and training. We spent quite a bit of time reseaching how TensorFlow worked and how we could train our own model. 
+
+## Accomplishments that we're proud of
+* We were able to piece together multiple screens with different functionalities using Andriod Studios. 
+* Upon learning git, we were able to maintain proper version control and kept merge conflicts to a minimum.
+* After spending numerous hours, we are proud to incorperate TensorFlow into our codebase. 
+
+## What we learned
+* We learned how to create an Android app from scratch.
+* We learned how to implement different types of APIs.
+* We learned how to use git.
+* We learned how to implement data modeling and training.
+
+## What's next?
+* Implement an actual database that store car locations and data.
+* Further improve our data modeling by incorperating more images.
+* Implement a more advance search that utlitzes information aside from transfer fees
+* Create additional widgets to provide better user experience
