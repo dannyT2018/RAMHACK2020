@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -139,7 +140,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
-    private fun findCarMaxToCarMax(closestCarMax: LatLng) {
+    private fun findCarMaxToCarMax(closestCarMax: LatLng): String? {
         try{
             Log.i("CurrentTestLocation", "${testLocation}")
         } catch (e: Exception) {
@@ -147,11 +148,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         var closestDistance = 99999.999
-        var closestYear: Int
-        var closestColor: String
-        var lowestPrice = 0
-        var closestLat: Double
-        var closestLng: Double
+        var closestYear= 2000
+        var closestColor = "black"
+        var lowestPrice = 9999999
+        var closestLat = 0.00
+        var closestLng = 0.00
+        var closestLocation = ""
         val jsonFileString = getJsonDataFromAsset(applicationContext, "LatLonStorageAdjusted.json")
 
         var desiredMake = "Honda"
@@ -159,6 +161,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val gson = Gson()
         val listPersonType = object : TypeToken<List<Distributor>>() {}.type
+        var resultText = ""
 
         var distributors: List<Distributor> = gson.fromJson(jsonFileString, listPersonType)
         distributors.forEachIndexed {
@@ -200,11 +203,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 closestColor = distributor.color
                 closestLat = distributor.lat
                 closestLng = distributor.lon
-                Log.i("WEGOTHERERERERE", "${desiredMake} & ${desiredModel} WEGOTHERERERERE")
+                closestLocation = distributor.location
             }
-        }
 
-        // TODO RETURN STRING HERE
+        }
+        resultText = "Make: ${desiredMake} \n" +
+                "Model: ${desiredModel} \n" +
+                "Color: ${closestColor} \n" +
+                "Latitude: ${closestLat} \n" +
+                "Longitude: ${closestLng} \n" +
+                "Price: ${lowestPrice} \n" +
+                "Location Area: ${closestLocation}"
+        return resultText
     }
 
     private fun getJsonDataFromAsset(context: Context, fileName: String): String? {
@@ -318,14 +328,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     fun ShowDialog(view: View) {
-        findCarMaxToCarMax(closestCarMax)
+        var message = findCarMaxToCarMax(closestCarMax)
         val builder:AlertDialog.Builder=AlertDialog.Builder(this)
         builder.setTitle("Search")
-        builder.setMessage("testing")
+        builder.setMessage("${message}")
         builder.setIcon(R.drawable.ic_launcher_background)
 
-        builder.setPositiveButton("Ok", DialogInterface.OnClickListener{dialog, which-> dialog.dismiss()})
-
+        builder.setNegativeButton("Buy", DialogInterface.OnClickListener{dialog, which->
+            Toast.makeText(
+                applicationContext,
+                "Sending you link now!", Toast.LENGTH_SHORT
+            ).show()})
+        builder.setPositiveButton("Cancel", DialogInterface.OnClickListener{dialog, which-> dialog.dismiss()})
         val alertDialog:AlertDialog = builder.create()
         alertDialog.show()
     }

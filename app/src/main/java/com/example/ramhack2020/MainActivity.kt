@@ -91,10 +91,14 @@ class MainActivity : AppCompatActivity(), LifecycleOwner {
 
                 val bitmap = image.toBitmap()
 
+//                tfLiteClassifier
+//                    .classifyAsync(bitmap)
+//                    .addOnSuccessListener { resultText -> checkResult(resultText.toString())}
+//                    .addOnFailureListener { error ->  Log.e("IMAGE ERROR", error.toString())}
                 tfLiteClassifier
                     .classifyAsync(bitmap)
-                    .addOnSuccessListener { resultText -> checkResult(resultText.toString())}
-                    .addOnFailureListener { error ->  Log.e("IMAGE ERROR", error.toString())}
+                    .addOnSuccessListener { resultText -> predictedTextView?.text = resultText }
+                    .addOnFailureListener { error -> Log.e("IMAGE ERROR", error.toString())}
 
             }
         CameraX.bindToLifecycle(this, preview, analyzerUseCase)
@@ -115,7 +119,7 @@ class MainActivity : AppCompatActivity(), LifecycleOwner {
                 CameraX.unbindAll()
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Vehicle Found")
-                builder.setMessage("Would you like to recycle the $remainder for one point?")
+                builder.setMessage("Would you like to buy the $remainder?")
                 // Show the popup because we are 80% certain the item is recyclable
                 builder.show()
             }
