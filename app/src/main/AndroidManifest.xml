@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -41,11 +43,11 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-<!--        <activity-->
-<!--            android:name=".MapsActivity"-->
-<!--            android:label="Maps">-->
-<!--        </activity>-->
-        <activity android:name=".MapsActivity">
+        <activity
+            android:name=".MapsActivity"
+            android:label="Maps">
+        </activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
