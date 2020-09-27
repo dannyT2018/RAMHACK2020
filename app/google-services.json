@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "250281965200",
+    "firebase_url": "https://ramhack2020.firebaseio.com",
+    "project_id": "ramhack2020",
+    "storage_bucket": "ramhack2020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250281965200:android:ebfe483e7c77ebe11b8a15",
+        "android_client_info": {
+          "package_name": "com.example.ramhack2020"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "250281965200-g9vvv008fhurb9k1lg6qrjl0m4shmebm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ramhack2020",
+            "certificate_hash": "ad6e2a14f7c76bbacd4ed24fcd4a0597325ce207"
+          }
+        },
+        {
+          "client_id": "250281965200-khhngtjc5ie4n70dco76t5mipmgaikmh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTkMQbg5o9Qa5JnJZJiCk1XOXRhC0ZSu4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250281965200-khhngtjc5ie4n70dco76t5mipmgaikmh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
