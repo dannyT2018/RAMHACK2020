@@ -13,8 +13,10 @@ import android.graphics.*
 import android.os.Handler
 import android.os.HandlerThread
 import android.util.Log
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.camera.core.*
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.LifecycleOwner
@@ -22,7 +24,9 @@ import java.io.ByteArrayOutputStream
 
 
 class MainActivity : AppCompatActivity(), LifecycleOwner {
-
+    private val carsTerms = arrayOf(
+        "cars", "car", "truck", "trucks", "vehicle", "vehicles"
+    )
     private var lensFacing = CameraX.LensFacing.BACK
     private val TAG = "MainActivity"
 
@@ -89,13 +93,34 @@ class MainActivity : AppCompatActivity(), LifecycleOwner {
 
                 tfLiteClassifier
                     .classifyAsync(bitmap)
-                    .addOnSuccessListener { resultText -> predictedTextView?.text = resultText }
+                    .addOnSuccessListener { resultText -> checkResult(resultText.toString()}
                     .addOnFailureListener { error ->  }
 
             }
         CameraX.bindToLifecycle(this, preview, analyzerUseCase)
     }
-
+    private fun checkResult(resultText: String) {
+        // Check to see if the object captured by the camera is recyclable.
+        val predictedTextView = findViewById<TextView>(R.id.predictedTextView)
+        predictedTextView.text = resultText
+        var resultNumber = resultText.split(".")[1]
+        resultNumber = ".$resultNumber"
+        val floatResults = resultNumber.toFloat()
+        // Note .8 is a magic number representing the odds of it being correct are over 80%
+        if (floatResults >= .8) {
+            // Check if on recyclable list
+            val remainder = resultText.split("\n")[0].substring(14)
+            if (carsTerms.contains(remainder)) {
+                // Pause camera and create builder dialog.
+                CameraX.unbindAll()
+                val builder = AlertDialog.Builder(this, R.style.AlertDialogCustom)
+                builder.setTitle("Recycle?")
+                builder.setMessage("Would you like to recycle the $remainder for one point?")
+                // Show the popup because we are 80% certain the item is recyclable
+                builder.show()
+            }
+        }
+    }
     fun ImageProxy.toBitmap(): Bitmap {
         val yBuffer = planes[0].buffer // Y
         val uBuffer = planes[1].buffer // U

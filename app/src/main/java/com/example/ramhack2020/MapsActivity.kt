@@ -109,7 +109,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         try{
             Log.i("CurrentTestLocation", "${testLocation}")
         } catch (e: Exception) {
-            Log.i("YEEEEEEEEEEEEEEEP", "FAILLLLLLLLLLLLLLLLLED")
+            Log.i("Nice", "Job")
         }
 
         var closestDistance = 99999.999
@@ -118,7 +118,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         var pricing = 0
         var transferFee = 0
         val jsonFileString = getJsonDataFromAsset(applicationContext, "LatLonStorageAdjusted.json")
-        Log.i("data", jsonFileString)
 
         val gson = Gson()
         val listPersonType = object : TypeToken<List<Distributor>>() {}.type
@@ -144,16 +143,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         try{
             Log.i("CurrentTestLocation", "${testLocation}")
         } catch (e: Exception) {
-            Log.i("YEEEEEEEEEEEEEEEP", "FAILLLLLLLLLLLLLLLLLED")
+            Log.i("Good", "Job")
         }
 
         var closestDistance = 99999.999
         var closestYear: Int
         var closestColor: String
-        var pricing = 0
-        var transferFee = 0
+        var lowestPrice = 0
+        var closestLat: Double
+        var closestLng: Double
         val jsonFileString = getJsonDataFromAsset(applicationContext, "LatLonStorageAdjusted.json")
-        Log.i("data", jsonFileString)
+
+        var desiredMake = "Honda"
+        var desiredModel = "Odyssey EX"
 
         val gson = Gson()
         val listPersonType = object : TypeToken<List<Distributor>>() {}.type
@@ -169,30 +171,40 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             locationB.latitude = distributor.lat
             locationB.longitude = distributor.lon
             val distance = locationA.distanceTo(locationB).toDouble()
+            var transferFee = 0
+            var adjustedPrice = 0
+
+            if (distance > 1500) {
+                transferFee = 999
+            } else if (distance > 1000) {
+                transferFee = 800
+            } else if (distance > 800) {
+                transferFee = 600
+            } else if (distance > 400) {
+                transferFee = 400
+            } else if (distance > 200) {
+                transferFee = 200
+            } else if (distance > 100) {
+                transferFee = 100
+            } else {
+                transferFee = 0
+            }
+
+            adjustedPrice = transferFee + distributor.price
             // Filter by car is needed HERE
-            if (distance < closestDistance) {
+            Log.i("Testing1", "${desiredMake} & ${desiredModel}")
+            Log.i("Testing2", "${distributor.make} & ${distributor.model}")
+            if (adjustedPrice < lowestPrice && desiredMake.equals(distributor.make) && desiredModel.equals(distributor.model)) {
+                lowestPrice = adjustedPrice
                 closestDistance = distance
-                closestYear = distributor.year
                 closestColor = distributor.color
-                pricing = distributor.price
+                closestLat = distributor.lat
+                closestLng = distributor.lon
+                Log.i("WEGOTHERERERERE", "${desiredMake} & ${desiredModel} WEGOTHERERERERE")
             }
         }
 
-        if (closestDistance > 1500) {
-            transferFee = 999
-        } else if (closestDistance > 1000) {
-            transferFee = 800
-        } else if (closestDistance > 800) {
-            transferFee = 600
-        } else if (closestDistance > 400) {
-            transferFee = 400
-        } else if (closestDistance > 200) {
-            transferFee = 200
-        } else if (closestDistance > 100) {
-            transferFee = 100
-        } else {
-            transferFee = 0
-        }
+        // TODO RETURN STRING HERE
     }
 
     private fun getJsonDataFromAsset(context: Context, fileName: String): String? {
@@ -306,7 +318,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     fun ShowDialog(view: View) {
-
+        findCarMaxToCarMax(closestCarMax)
         val builder:AlertDialog.Builder=AlertDialog.Builder(this)
         builder.setTitle("Search")
         builder.setMessage("testing")
