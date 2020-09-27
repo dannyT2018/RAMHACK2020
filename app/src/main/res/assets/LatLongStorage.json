@@ -1,12 +1,45 @@
 {
   "carmax1": {
-    "Latitude": "1",
-    "Longitude": "1",
-    "Location Name": "Random Made Up Carmax"
-  },
-  "carmax2": {
-    "Latitude": "2",
-    "Longitude": "2",
-    "Location Name": "New Random Made Up Carmax"
+    "Latitude": "37.650904",
+    "Longitude": "-77.591291",
+    "Location Name": "Richmond VA",
+    "cars": {
+      "Ford" : {
+        "Model": "Edge",
+        "Year" : "2010",
+        "Color" : "Red",
+        "Price" : "10,998"
+      },
+      "Toyota" : {
+        "Model": "Avalon",
+        "Year" : "2012",
+        "Color" : "Cream",
+        "Price" : "13,599"
+      },
+      "Lincoln" : {
+        "Model": "Town Car Signature",
+        "Year" : "2011",
+        "Color" : "White",
+        "Price" : "12,599"
+      },
+      "Honda" : {
+        "Model": "Odyssey EX",
+        "Year" : "2014",
+        "Color" : "White",
+        "Price" : "15,998"
+      },
+      "Chevrolet" : {
+        "Model": "Traverse LT",
+        "Year" : "2020",
+        "Color" : "Grey",
+        "Price" : "33,998"
+      },
+      "Nissan" : {
+        "Model": "Altima S",
+        "Year" : "2011",
+        "Color" : "White",
+        "Price" : "11,599"
+      }
+    }
   }
 }
