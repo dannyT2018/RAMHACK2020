@@ -4,7 +4,7 @@
 <p>Imagine driving through downtown on a Friday night and suddenly a beautiful car rolls past you. Despite being awed by the vehicle, you are unable to identify it. To solve this problem, we decided to create CarDabra, a mobile application that helps identify cars on the road.</p>
 
 ## What it does
-<p>Similar to Snapchat's Shazam, we decided to move the focus from music to cars. Using a mobile device, you are able to aim your camera at an unknown vehicle and get back the model and make of that car. Not only that, but CarDabra will help you find that car at the cheapest price given transfer fees between one point to another. All of this is done at the palm of your hands.</p>
+<p>Similar to Snapchat's Shazam, we decided to move the focus from music to cars. Using a mobile device, you are able to aim your camera at an unknown vehicle and get back the model and make of that car. Not only that, but CarDabra will help you find that car at the cheapest price given transfer fees between one point to another. All of this is done in the palm of your hands.</p>
 
 ## How we built it
 <p>We used Kotlin, XML, Google Maps API, TensorFlowLite API, and Android Studio to develop the app.</p>
